@@ -22,10 +22,11 @@ const { Content } = await post.render();
 </div>
 
 <style>
-  /* 让 giscus 区域整体在深色背景下更清晰 */
+  /* 只微调 giscus 在深色背景下的可读性 */
   .giscus-wrap {
-    --giscus-text-color: #fff;
-    --giscus-secondary-text-color: rgba(255,255,255,.75);
+    --color-fg-muted: rgba(255,255,255,0.65);
+    --color-fg-default: rgba(255,255,255,0.9);
+    --color-border-default: rgba(255,255,255,0.15);
   }
 </style>
 
@@ -40,7 +41,7 @@ const { Content } = await post.render();
     data-reactions-enabled="1"
     data-emit-metadata="0"
     data-input-position="bottom"
-    data-theme="transparent_dark"        <!-- ✅ 关键：深色透明主题 -->
+    data-theme="dark"        <!-- ✅ 关键：深色透明主题 -->
     data-lang="zh-CN"
     crossorigin="anonymous"
     async>
