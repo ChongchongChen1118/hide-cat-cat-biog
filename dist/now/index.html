@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>切克 NOW👿 | Hide-Cat-Cat</title><meta name="description" content="Now page"><!-- ✅ favicon（推荐顺序：svg -> ico） --><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="stylesheet" href="/_astro/_slug_.Do--3vIT.css"></head> <body> <header class="site-header" data-astro-cid-3ef6ksr2> <div class="container" data-astro-cid-3ef6ksr2> <div class="header-inner" data-astro-cid-3ef6ksr2> <a class="site-logo" data-text="hide-cat-cat." href="/" style="font-weight:700;" data-astro-cid-3ef6ksr2>
+Hide-Cat-Cat<span style="color:var(--accent);" data-astro-cid-3ef6ksr2>.</span> </a> <nav class="small nav" data-astro-cid-3ef6ksr2> <a class href="/" data-astro-cid-3ef6ksr2>首页</a> <a class href="/blog" data-astro-cid-3ef6ksr2>博客</a> <a class href="/about" data-astro-cid-3ef6ksr2>关于</a> <a class href="/friends" data-astro-cid-3ef6ksr2>MY 朋友们</a> <a class="active" href="/now" data-astro-cid-3ef6ksr2>现在 NOW</a> <a class href="/search" data-astro-cid-3ef6ksr2>搜索</a> </nav> </div> </div> </header>  <main class="main"> <div class="container">  <h1>切克 NOW👿</h1> <section class="card"> <p>如果你觉得生活没意义，那就来看看我在做什么，给你找找乐趣👽</p> <hr> <p class="small">
+- 近期在想：想处大象<br>
+- 近期在读：《以日为监》<br>
+- 最近在喝：那必须~是蜜雪冰城<br>
+- 最近在听：来啊~快活啊~<br> </p> </section>  </div> </main> <footer class="site-footer" data-astro-cid-sz7xmlte> <div class="container small" style="color:var(--muted);padding-top:0;" data-astro-cid-sz7xmlte> <hr data-astro-cid-sz7xmlte> <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;" data-astro-cid-sz7xmlte> <div data-astro-cid-sz7xmlte>© 2026 Hide-Cat-Cat · By Liam Chen</div> <div data-astro-cid-sz7xmlte>自由 · 开放 · 包容 · V1.0.0</div> </div> </div> </footer>  <!-- 如果你有鼠标追光脚本，保留即可 --> <script>
+      (() => {
+        const root = document.documentElement;
+        let x = Math.round(window.innerWidth * 0.55);
+        let y = Math.round(window.innerHeight * 0.30);
+        let raf = 0;
+        const apply = () => {
+          raf = 0;
+          root.style.setProperty("--mx", x + "px");
+          root.style.setProperty("--my", y + "px");
+        };
+        apply();
+        const onMove = (cx, cy) => {
+          x = cx; y = cy;
+          if (!raf) raf = requestAnimationFrame(apply);
+        };
+        window.addEventListener("mousemove", (e) => onMove(e.clientX, e.clientY), { passive: true });
+        window.addEventListener("touchmove", (e) => {
+          if (!e.touches || !e.touches[0]) return;
+          onMove(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+      })();
+    </script> </body> </html>

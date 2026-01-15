@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("posts", (p) => !p.data.draft))
+  .sort((a,b) => (a.data.date < b.data.date ? 1 : -1));
+---
+<BaseLayout title="随便写写，🙅‍♀️一定对" description="博客列表">
+  <h1>随便写写，🙅‍♀️一定对</h1>
+  <p class="small">说白了，梦到啥写啥</p>
+
+  <div class="grid grid-2">
+    {posts.map((post) => <PostCard post={post} />)}
+  </div>
+</BaseLayout>

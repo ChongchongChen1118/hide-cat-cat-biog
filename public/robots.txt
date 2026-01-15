@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hide-cat-cat.reage.icu/sitemap-index.xml

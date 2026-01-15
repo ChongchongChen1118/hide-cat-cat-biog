@@ -1,0 +1,52 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Seo from "../components/Seo.astro";
+
+const { title, description } = Astro.props;
+---
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <Seo title={title} description={description} />
+  </head>
+
+  <body>
+    <Header />
+
+    <main class="main">
+      <div class="container">
+        <slot />
+      </div>
+    </main>
+
+    <Footer />
+
+    <!-- 如果你有鼠标追光脚本，保留即可 -->
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+        let x = Math.round(window.innerWidth * 0.55);
+        let y = Math.round(window.innerHeight * 0.30);
+        let raf = 0;
+        const apply = () => {
+          raf = 0;
+          root.style.setProperty("--mx", x + "px");
+          root.style.setProperty("--my", y + "px");
+        };
+        apply();
+        const onMove = (cx, cy) => {
+          x = cx; y = cy;
+          if (!raf) raf = requestAnimationFrame(apply);
+        };
+        window.addEventListener("mousemove", (e) => onMove(e.clientX, e.clientY), { passive: true });
+        window.addEventListener("touchmove", (e) => {
+          if (!e.touches || !e.touches[0]) return;
+          onMove(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: true });
+      })();
+    </script>
+  </body>
+</html>

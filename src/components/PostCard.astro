@@ -1,0 +1,13 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+const { post } = Astro.props as { post: CollectionEntry<"posts"> };
+---
+<a class="card" href={`/blog/${post.slug}`}>
+  <div class="badge">{post.data.date}</div>
+  <h3 style="margin-top:10px;margin-bottom:6px;">{post.data.title}</h3>
+  <p class="small">{post.data.description}</p>
+  <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+    {post.data.tags?.map((tag) => <span class="badge">{tag}</span>)}
+  </div>
+</a>

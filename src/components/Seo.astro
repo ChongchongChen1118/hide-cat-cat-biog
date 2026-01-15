@@ -1,0 +1,16 @@
+---
+const { title, description } = Astro.props;
+
+const siteTitle = "Hide-Cat-Cat";
+const metaTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+
+const metaDescription = description ?? "hide-cat-cat 个人博客";
+---
+<title>{metaTitle}</title>
+<meta name="description" content={metaDescription} />
+
+<!-- ✅ favicon（推荐顺序：svg -> ico） -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="alternate icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+

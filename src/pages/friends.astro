@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// 你以后只需要在这里加好友博客（avatar 用网络图片地址即可）
+const friends = [
+  {
+    detail: "你是112的不",
+    name: "昊宇加油站",
+    desc: "迪迪继承人",
+    url: "https://helloliujia.oss-cn-beijing.aliyuncs.com/34bc6d66a5d0670539acbccb208e30b2.jpg",
+    avatar: "https://helloliujia.oss-cn-beijing.aliyuncs.com/34bc6d66a5d0670539acbccb208e30b2.jpg",
+  },
+  {
+    detail: "一个臭皮匠，后厨买单不结账",
+    name: "栾智慧",
+    desc: "高伟达在职员工",
+    url: "https://helloliujia.oss-cn-beijing.aliyuncs.com/0f8ac937806112e775e80e1651f0629d.jpg",
+    avatar: "https://helloliujia.oss-cn-beijing.aliyuncs.com/0f8ac937806112e775e80e1651f0629d.jpg",
+  },
+  {
+    detail: "yeyeye，咦~",
+    name: "喂金鱼",
+    desc: "天天跟智慧打ber",
+    url: "https://helloliujia.oss-cn-beijing.aliyuncs.com/118e8b6c46572491e8a448ab1fed26dd.jpg",
+    avatar: "https://helloliujia.oss-cn-beijing.aliyuncs.com/118e8b6c46572491e8a448ab1fed26dd.jpg",
+  },
+];
+---
+<BaseLayout title="MY👯狐朋狗友" description="Friends">
+  <h1>MY👯狐朋狗友</h1>
+
+  <div class="friends-grid">
+    {friends.map((f) => (
+      <a class="friend-card" href={f.url} target="_blank" rel="noreferrer">
+        <div class="friend-info">
+          <div class="badge">{f.detail}</div>
+          <h3>{f.name}</h3>
+          <p class="small">{f.desc}</p>
+        </div>
+
+        <img
+          class="friend-avatar"
+          src={f.avatar}
+          alt={f.name}
+          loading="lazy"
+          referrerpolicy="no-referrer"
+        />
+      </a>
+    ))}
+  </div>
+</BaseLayout>

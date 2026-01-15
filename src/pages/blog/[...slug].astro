@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import PostLayout from "../../layouts/PostLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", (p) => !p.data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+<PostLayout frontmatter={post.data}>
+  <Content />
+
+  <hr />
+  <div class="small" style="color:var(--muted);margin-bottom:8px;">
+    评论（Giscus）
+  </div>
+
+  <!-- 你部署后把下面 repo / repo-id / category-id 换成你自己的 -->
+  <script src="https://giscus.app/client.js"
+    data-repo="YOUR_GITHUB_NAME/YOUR_REPO"
+    data-repo-id="YOUR_REPO_ID"
+    data-category="General"
+    data-category-id="YOUR_CATEGORY_ID"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="transparent_dark"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+  </script>
+</PostLayout>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="搜身，☁️不许动" description="Search posts">
+  <h1>搜身，☁️不许动</h1>
+
+  <section class="card">
+    <input id="q" placeholder="输入关键词（标题/摘要/标签）…" />
+    <div style="height:12px"></div>
+    <div id="result" class="grid"></div>
+  </section>
+
+  <script is:inline>
+    const q = document.getElementById("q");
+    const out = document.getElementById("result");
+
+    let data = [];
+    fetch("/search-index.json")
+      .then(r => r.json())
+      .then(j => { data = j; });
+
+    function render(list){
+      out.innerHTML = "";
+      if (!list.length){
+        out.innerHTML = `<div class="small" style="color:var(--muted)">没有找到匹配内容。</div>`;
+        return;
+      }
+      for (const item of list){
+        const el = document.createElement("a");
+        el.className = "card";
+        el.href = `/blog/${item.slug}`;
+        el.innerHTML = `
+          <div class="badge">${item.date}</div>
+          <h3 style="margin-top:10px;margin-bottom:6px;">${item.title}</h3>
+          <p class="small">${item.description}</p>
+          <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;">
+            ${(item.tags||[]).map(t => `<span class="badge">${t}</span>`).join("")}
+          </div>
+        `;
+        out.appendChild(el);
+      }
+    }
+
+    q.addEventListener("input", () => {
+      const s = q.value.trim().toLowerCase();
+      if (!s) return render([]);
+      const list = data.filter(x =>
+        (x.title||"").toLowerCase().includes(s) ||
+        (x.description||"").toLowerCase().includes(s) ||
+        (x.tags||[]).join(" ").toLowerCase().includes(s)
+      ).slice(0, 30);
+      render(list);
+    });
+  </script>
+</BaseLayout>
