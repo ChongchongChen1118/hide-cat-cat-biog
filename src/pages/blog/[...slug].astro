@@ -16,25 +16,33 @@ const { Content } = await post.render();
 <PostLayout frontmatter={post.data}>
   <Content />
 
-  <hr />
-  <div class="small" style="color:var(--muted);margin-bottom:8px;">
-    评论（Giscus）
-  </div>
+<hr />
+<div class="small" style="color:var(--muted);margin-bottom:8px;">
+  评论（Giscus）
+</div>
 
-  <!-- 你部署后把下面 repo / repo-id / category-id 换成你自己的 -->
+<style>
+  /* 让 giscus 区域整体在深色背景下更清晰 */
+  .giscus-wrap {
+    --giscus-text-color: #fff;
+    --giscus-secondary-text-color: rgba(255,255,255,.75);
+  }
+</style>
+
+<div class="giscus-wrap">
   <script src="https://giscus.app/client.js"
     data-repo="ChongchongChen1118/hide-cat-cat-biog"
     data-repo-id="R_kgDOQ6otfg"
-    data-category="[在此输入分类名]"
-    data-category-id="[在此输入分类 ID]"
+    data-category="General"              <!-- ✅ 换成你 giscus.app 上选的分类名 -->
+    data-category-id="DIC_kwDOQ6otfs4C..."<!-- ✅ 换成你 giscus.app 给的 category-id -->
     data-mapping="pathname"
     data-strict="0"
     data-reactions-enabled="1"
     data-emit-metadata="0"
     data-input-position="bottom"
-    data-theme="preferred_color_scheme"
+    data-theme="transparent_dark"        <!-- ✅ 关键：深色透明主题 -->
     data-lang="zh-CN"
     crossorigin="anonymous"
     async>
   </script>
-</PostLayout>
+</div>
