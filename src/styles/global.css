@@ -400,11 +400,9 @@ body::after{
 
     /* noise (stars) */
     radial-gradient(rgba(255,255,255,.22) 1px, transparent 1px),
-    radial-gradient(rgba(255,255,255,.16) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,.14) 1px, transparent 1px),
     radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px),
-    radial-gradient(rgba(255,255,255,.09) 1px, transparent 1px),
-    radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-    radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+    radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
 
   background-size:
     /* mouse */
@@ -432,9 +430,7 @@ body::after{
     157px 173px,
     97px 131px,
     223px 197px,
-    79px 83px,
-    181px 149px,
-    263px 211px;
+    79px 83px;
 
   background-position:
     /* mouse */
@@ -462,10 +458,7 @@ body::after{
     13px 27px,
     71px 9px,
     -19px 48px,
-    41px 61px,
-    -53px 17px,
-    89px -31px;
-
+    41px 61px;
 
   opacity: .58;
   mix-blend-mode: screen;
