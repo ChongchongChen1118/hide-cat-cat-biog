@@ -246,25 +246,52 @@ body::after{
 
 @keyframes stars-float{
   0%   { background-position:
-          -30% 0%,
+          /* mouse 1 */ 0 0,
+          /* mouse 2 */ 0 0,
+          /* mouse 3 */ 0 0,
+
+          /* scan band ✅ 从最右侧开始 */
+          -100% 0%,
+
+          /* glows */
           0 0,
           0 0,
           0 0,
           0 0,
+
+          /* grid */
           0 0,
           0 0,
+
+          /* vignette */
           0 0,
+
+          /* noise */
           0 0,
           30px 40px; }
+
   100% { background-position:
-          20% 20%,
+          /* mouse 1 */ 0 0,
+          /* mouse 2 */ 0 0,
+          /* mouse 3 */ 0 0,
+
+          /* scan band ✅ 向左出屏 */
+          0% 0%,
+
+          /* glows */
           0 0,
           0 0,
           0 0,
           0 0,
+
+          /* grid */
           -40px 30px,
           -40px 30px,
+
+          /* vignette */
           0 0,
+
+          /* noise */
           -40px 30px,
           -10px 70px; }
 }
@@ -431,7 +458,7 @@ body::after{
   mix-blend-mode: screen;
   filter: saturate(1.12) contrast(1.02);
 
-  animation: scan-sweep 9s ease-in-out infinite, stars-float 18s linear infinite;
+  animation: scan-sweep 9s ease-in-out infinite, stars-float 9s linear infinite;
 }
 
 
