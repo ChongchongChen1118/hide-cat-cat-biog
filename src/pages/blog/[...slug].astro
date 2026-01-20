@@ -1,40 +1,61 @@
----
-import { getCollection } from "astro:content";
-import PostLayout from "../../layouts/PostLayout.astro";
-
-export async function getStaticPaths() {
-  const posts = await getCollection("posts", (p) => !p.data.draft);
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
-}
-
-const { post } = Astro.props;
-const { Content } = await post.render();
----
 <PostLayout frontmatter={post.data}>
-  <Content />
+  <article class="post-content" id="post-content">
+    <Content />
+  </article>
 
-<hr />
-<div class="small" style="color:var(--muted);margin-bottom:8px;">
-  评论（Giscus）
-</div>
+  <script is:inline>
+    (() => {
+      const root = document.getElementById("post-content");
+      if (!root) return;
 
-<div class="giscus-wrap">
-<script src="https://giscus.app/client.js"
-        data-repo="ChongchongChen1118/hide-cat-cat-biog"
-        data-repo-id="R_kgDOQ6otfg"
-        data-category="General"
-        data-category-id="DIC_kwDOQ6otfs4C1AUc"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="1"
-        data-input-position="bottom"
-        data-theme="dark_dimmed"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
-</script>
-</div>
+      const anchors = root.querySelectorAll('a[href]');
+      anchors.forEach((a) => {
+        const href = a.getAttribute("href");
+        if (!href) return;
+
+        // 跳过站内链接 / 锚点 / 邮箱 / 电话
+        if (
+          href.startsWith("/") ||
+          href.startsWith("#") ||
+          href.startsWith("mailto:") ||
+          href.startsWith("tel:")
+        ) return;
+
+        // 同源链接也不强制新窗口（可选：如果你想同源也新开，把这段删掉）
+        try {
+          const url = new URL(href, window.location.href);
+          if (url.origin === window.location.origin) return;
+        } catch {
+          // href 不是合法 URL 时忽略
+          return;
+        }
+
+        a.setAttribute("target", "_blank");
+        a.setAttribute("rel", "noopener noreferrer");
+      });
+    })();
+  </script>
+
+  <hr />
+  <div class="small" style="color:var(--muted);margin-bottom:8px;">
+    评论（Giscus）
+  </div>
+
+  <div class="giscus-wrap">
+    <script src="https://giscus.app/client.js"
+      data-repo="ChongchongChen1118/hide-cat-cat-biog"
+      data-repo-id="R_kgDOQ6otfg"
+      data-category="General"
+      data-category-id="DIC_kwDOQ6otfs4C1AUc"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="1"
+      data-input-position="bottom"
+      data-theme="dark_dimmed"
+      data-lang="zh-CN"
+      crossorigin="anonymous"
+      async>
+    </script>
+  </div>
+</PostLayout>
