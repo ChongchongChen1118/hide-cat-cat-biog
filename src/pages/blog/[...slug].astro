@@ -82,43 +82,44 @@ const { Content } = await post.render();
     </script>
   </div>
 <style>
-  /* ===== Mobile-safe Markdown content (no clipping) ===== */
-
-  /* 不要用 overflow hidden 裁切文章内容 */
+  /* ✅ 文章正文容器：永远不撑出页面 */
   .post-content{
     max-width: 100%;
     min-width: 0;
-    overflow-wrap: anywhere;
-    word-break: break-word;
   }
 
-  /* 图片自适应：保证完整显示且不溢出 */
+  /* ✅ 图片默认自适应，不溢出 */
   .post-content img{
+    display: block;
     max-width: 100%;
     height: auto;
-    display: block;
+    width: auto !important;     /* 覆盖可能的写死宽度 */
   }
 
+  /* ✅ 如果遇到超宽图（比如长截图）：
+     给图片一个“可横向滚动的包裹层”体验（不需要你改 Markdown） */
+  .post-content :global(p:has(> img)),
+  .post-content :global(figure:has(> img)){
+    overflow-x: auto;
+    max-width: 100%;
+  }
+
+  /* 避免 p/figure 出现奇怪的撑宽 */
   .post-content p,
   .post-content figure{
     max-width: 100%;
+    margin-inline: 0;
   }
 
-  /* 代码块/表格：允许自己横向滚动，但不撑破页面 */
+  /* 代码块/表格允许自己横向滚动 */
   .post-content pre{
-    max-width: 100%;
     overflow-x: auto;
+    max-width: 100%;
   }
-
   .post-content table{
     display: block;
-    max-width: 100%;
     overflow-x: auto;
-  }
-
-  /* ✅ 防止整页出现横向滚动条（不裁图片） */
-  html, body{
-    overflow-x: hidden;
+    max-width: 100%;
   }
 </style>
 </PostLayout>
